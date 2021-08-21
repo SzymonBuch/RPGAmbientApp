@@ -1,0 +1,32 @@
+﻿@model RPGAmbientApp.Models.Show
+
+<div>
+    <form>
+        <div class="form-group">
+            <label for="exampleFormControlInput1">Email address</label>
+            <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com" name="email1">
+        </div>
+        <div class="form-group">
+            <label for="exampleFormControlInput2">Email address2</label>
+            <input type="email" class="form-control" id="exampleFormControlInput2" placeholder="name@example.com" name="email2">
+        </div>
+        <div class="form-group">
+            <label for="exampleFormControlInput3">Email address3</label>
+            <input type="text" class="form-control" id="exampleFormControlInput3" placeholder="name@example.com" name="email3">
+        </div>
+        <input type="submit" class="btn btn-primary" value="Send" />
+    </form>
+    
+</div>
+<div>
+    <h2 class="text-center">
+        Mood Maker
+    </h2>
+    <p>
+        @DateTime.Now
+    </p>
+    <p>
+        @Model.Title
+        @Model.Time.ToString()
+    </p>
+</div>

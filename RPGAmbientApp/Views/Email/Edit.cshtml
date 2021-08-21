@@ -1,0 +1,20 @@
+﻿@model RPGAmbientApp.Models.Emails
+
+<div>
+    <form method="post" asp-action="Edit" asp-controller="Email">
+        <input type="hidden" asp-for="Id" />
+        <div class="form-group">
+            <label for="exampleFormControlInput1">Email address1</label>
+            <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com" asp-for="Email1">
+        </div>
+        <div class="form-group">
+            <label for="exampleFormControlInput2">Email address2</label>
+            <input type="email" class="form-control" id="exampleFormControlInput2" placeholder="name@example.com" asp-for="Email2">
+        </div>
+        <div class="form-group">
+            <label for="exampleFormControlInput3">Email address3</label>
+            <input type="email" class="form-control" id="exampleFormControlInput3" placeholder="name@example.com" asp-for="Email3">
+        </div>
+        <input class="btn btn-success" type="submit" value="Change" />
+    </form>
+</div>
