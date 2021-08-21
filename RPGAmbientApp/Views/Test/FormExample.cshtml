@@ -1,0 +1,37 @@
+﻿@model RPGAmbientApp.Models.Emails
+
+<div>
+    <form method="post" asp-action="FormExample" asp-controller="Test">
+        <div class="form-group">
+            <label for="exampleFormControlInput1">Email address</label>
+            <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com" asp-for="Email1">
+        </div>
+        <div class="form-group">
+            <label for="exampleFormControlInput2">Email address2</label>
+            <input type="text" class="form-control" id="exampleFormControlInput2" placeholder="name@example.com" asp-for="Email2">
+            <span class="text-danger" asp-validation-for="Email2"></span>
+        </div>
+        <div class="form-group">
+            <label for="exampleFormControlInput3">Email address3</label>
+            <input type="text" class="form-control" id="exampleFormControlInput3" placeholder="name@example.com" asp-for="Email3">
+        </div>
+        <input type="submit" class="btn btn-primary" value="Send" onclick="return validateEmail()"/>
+    </form>
+</div>
+<script>
+    function validateEmail()
+    {
+        let email = document.getElementById("exampleFormControlInput3").value;
+        if (email.search("@@") != -1)
+        {
+            return true;
+        }
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...Validation error',
+            text: 'Invalid email',
+        })
+        return false;
+    }
+</script>
+
