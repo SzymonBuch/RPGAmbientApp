@@ -9,10 +9,13 @@ namespace RPGAmbientApp.Data
 {
     public class AppDBContext : DbContext
     {
-        public DbSet<Emails> Email { get; set; }
         public AppDBContext(DbContextOptions<AppDBContext> options): base(options)
         {
             
         }
+
+        public DbSet<Emails> Email { get; set; }
+
+        public DbSet<AudioFile> AudioFiles { get; set; }
     }
 }
