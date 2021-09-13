@@ -35,7 +35,7 @@ namespace RPGAmbientApp.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Edit(AudioFile audioFile)
+        public IActionResult SongEditor(AudioFile audioFile)
         {
             if (audioFile == null)
             {

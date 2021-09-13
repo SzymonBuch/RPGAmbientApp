@@ -1,4 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
+using RPGAmbientApp.Constans;
 using RPGAmbientApp.Data;
 using RPGAmbientApp.Models;
 using System;
@@ -10,7 +13,7 @@ namespace RPGAmbientApp.Controllers
 {
     public class EmailController : Controller
     {
-        private AppDBContext _appDBContext;
+        private readonly AppDBContext _appDBContext;
 
         public EmailController(AppDBContext appDBContext)
         {
@@ -22,13 +25,19 @@ namespace RPGAmbientApp.Controllers
             return View(model);
         }
         [HttpGet]
+        [Authorize]
         public IActionResult Create()
         {
-            return View();
+            if (User.IsInRole(Roles.Admin))
+            {
+                return View();
+            }
+            return NotFound();
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public IActionResult Create(Emails emails)
         {
             if (emails == null)
