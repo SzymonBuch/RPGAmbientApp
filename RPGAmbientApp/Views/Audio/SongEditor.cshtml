@@ -1,3 +1,26 @@
 ﻿@model RPGAmbientApp.Models.AudioFile
 
-
+<div>
+    <form method="post" asp-action="SongEditor" asp-controller="Audio">
+        <input type="hidden" asp-for="ID" />
+        <div class="form-group">
+            <label for="name">Song name</label>
+            <input type="text" class="form-control" id="name" asp-for="Name">
+            <input type="hidden" class="form-control" asp-for="ImgPath" />
+            <input type="hidden" class="form-control" asp-for="FilePath" />
+        </div>
+        <div class="container mt-4 mb-4">
+            <div class="col-md-12 col-lg-8">
+                <h1 class="h2 mb-4">Adventure Idea</h1>
+                <div class="form-group">
+                    <textarea id="editor" asp-for="AdventureIdea"></textarea>
+                </div>
+            </div>
+        </div>
+        <input class="btn btn-success" type="submit" value="Change" />
+    </form>
+    <form method="post" asp-action="Delete" asp-controller="Audio">
+        <input type="hidden" asp-for="ID" />
+        <input class="btn btn-danger" type="submit" value="Delete" />
+    </form>
+</div>

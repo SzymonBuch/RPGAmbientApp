@@ -1,52 +1,53 @@
 ﻿@model IEnumerable<RPGAmbientApp.Models.AudioFile>
+@using RPGAmbientApp.Constans
 
 
-<body class="bg-image" style="
-      background-image: url('/MediaLibrary/Images/bg4.jpg');
-      height: 100vh;">
-    <div class="container d-flex">
+<body class="bg-image parallax" 
+      style="background-image: url('/MediaLibrary/Images/bg4.jpg'); overflow: auto">
+    <div class="container">
         @foreach (var song in Model)
         {
-            <div class="container">
-                <h4>@song.Name</h4>
-                <input type="image" src="@Url.Content(song.ImgPath)" data-toggle="modal" data-target="#id_@song.ID.ToString()" class="rounded" width="360" height="270" />
+            <button type="button" class="btn" data-toggle="modal" data-target="#id_@song.ID.ToString()">
+                <img src="@Url.Content((Paths.webImagePath + song.ImgPath))" width="360" height="270" class="rounded" />
+            </button>
 
-                <div class="modal fade" id="id_@song.ID.ToString()" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">@song.Name</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
+            <div class="modal fade" id="id_@song.ID.ToString()" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">@song.Name</h5>
+                            @if (User.IsInRole(Roles.Admin))
+                            {
+                                <a class="btn btn-danger" asp-route-Id="@song.ID" asp-action="SongEditor"><i class="fas fa-edit"></i></a>
+                            }
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body d-flex justify-content-center">
+                            <div>
+                                <audio controls>
+                                    <source src="@Url.Content((Paths.webSongFilePath + song.FilePath))" type="audio/ogg">
+                                </audio>
                             </div>
-                            <div class="modal-body d-flex justify-content-center">
-                                <div class="justify-content-around">
-                                    <audio controls>
-                                        <source src="@Url.Content(song.FilePath)" type="audio/ogg">
-                                    </audio>
-                                </div>
+                            <br />
+                            <div>
+                                <h5>Adventure idea</h5>
                                 <div>
-                                    <h5>Adventure idea</h5>
-                                    <div class="modal-body d-flex text-j`ustify">
-                                        @if (song.AdventureIdea == null)
-                                        {
-                                            song.AdventureIdea = "Coming soon!";
-                                        }
-                                        @song.AdventureIdea
-                                    </div>
+                                    @if (song.AdventureIdea == null)
+                                    {
+                                        song.AdventureIdea = "Coming soon!";
+                                    }
+                                    @Html.Raw(song.AdventureIdea)
                                 </div>
-
                             </div>
-
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                         </div>
                     </div>
                 </div>
             </div>
-
         }
     </div>
 

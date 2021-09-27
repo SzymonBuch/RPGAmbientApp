@@ -10,6 +10,5 @@ namespace RPGAmbientApp.Constans
         public readonly static string Admin = "Admin";
 
         public readonly static string User = "User";
-
     }
 }
